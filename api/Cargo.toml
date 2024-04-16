@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+actix-web = "4.5.1"
 dotenvy = "0.15.7"
 futures = "0.3.30"
 octocrab = "0.38.0"
