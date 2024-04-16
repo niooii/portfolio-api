@@ -13,8 +13,11 @@ async fn main() -> octocrab::Result<()> {
     
     let mut gh_stats = GithubStats::new(token).await?;
 
-    let yes = gh_stats.get_total_lang_stats_bytes();
+    let yes = gh_stats.get_total_lang_stats_percentage();
         println!("{:?}", yes);
+
+    let total_percent: f32 = yes.iter().map(|(_name, percent)| *percent).sum();
+    println!("{total_percent}");
 
     Ok(())
 }

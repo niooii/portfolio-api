@@ -87,7 +87,7 @@ impl GithubStats {
             for lang_info in repo.languages() {
                 let count = lang_map.entry(lang_info.name.clone()).or_insert(0);
                 *count += lang_info.bytes;
-                println!("repo {} contributed {} bytes of {}", repo.name, lang_info.bytes, lang_info.name);
+                // println!("repo {} contributed {} bytes of {}", repo.name, lang_info.bytes, lang_info.name);
             }
         }
 
@@ -96,8 +96,16 @@ impl GithubStats {
 
     pub fn get_total_lang_stats_percentage(&self) -> HashMap<String, f32> {
         
-
-        todo!()
+        let lang_stats_bytes = self.get_total_lang_stats_bytes();
+        let total_bytes: i64 = lang_stats_bytes.iter()
+        .map(|(name, bytes)| *bytes)
+        .sum();
+    
+        let lang_stats_percent = lang_stats_bytes.into_iter()
+        .map(|(name, bytes)| (name, bytes as f32 / total_bytes as f32)) 
+        .collect();
+        
+        lang_stats_percent
     }
 }
 
