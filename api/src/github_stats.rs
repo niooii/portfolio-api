@@ -102,7 +102,7 @@ impl GithubStats {
         .sum();
     
         let lang_stats_percent = lang_stats_bytes.into_iter()
-        .map(|(name, bytes)| (name, bytes as f32 / total_bytes as f32)) 
+        .map(|(name, bytes)| (name, bytes as f32 * 100_f32 / total_bytes as f32)) 
         .collect();
         
         lang_stats_percent
