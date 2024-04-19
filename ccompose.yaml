@@ -24,7 +24,7 @@ services:
       - cassandra
     volumes:
       - ./db/schema.cql:/schema.cql 
-    command: /bin/bash -c "sleep 60 && echo loading cassandra keyspace && cqlsh cassandra -f /schema.cql"
+    command: /bin/bash -c "sleep 65 && echo loading cassandra keyspace && cqlsh cassandra -f /schema.cql"
       
 volumes:
   cassandra_db: 
