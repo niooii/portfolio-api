@@ -255,20 +255,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f538837af36e6f6a9be0faa67f9a314f8119e4e4b5867c6ab40ed60360142519"
 
 [[package]]
-name = "api"
-version = "0.1.0"
-dependencies = [
- "actix-web",
- "anyhow",
- "dotenvy",
- "futures",
- "octocrab",
- "serde",
- "serde_json",
- "tokio",
-]
-
-[[package]]
 name = "arc-swap"
 version = "1.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -290,6 +276,20 @@ name = "autocfg"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f1fdabc7756949593fe60f30ec81974b613357de856987752631dea1e3394c80"
+
+[[package]]
+name = "backend"
+version = "0.1.0"
+dependencies = [
+ "actix-web",
+ "anyhow",
+ "dotenvy",
+ "futures",
+ "octocrab",
+ "serde",
+ "serde_json",
+ "tokio",
+]
 
 [[package]]
 name = "backtrace"

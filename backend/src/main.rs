@@ -3,7 +3,7 @@ use octocrab::Octocrab;
 use dotenvy::dotenv;
 mod github_stats;
 use github_stats::GithubStats;
-use actix_web::{web, App, HttpResponse, HttpServer};
+use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 
 #[actix_web::main]
 async fn main() -> anyhow::Result<()> {
@@ -24,12 +24,19 @@ async fn main() -> anyhow::Result<()> {
     HttpServer::new(|| {
         App::new().service(
             web::scope("/api")
-                .route("/stats/", web::post().to(upload))
-                .route("/stats/{name}/", web::get().to(download)),
+                .route("/stats/languages", web::get().to(language_stats))
         )
     })
     .bind(("127.0.0.1", 8080))?
     .run().await?;
 //a
     Ok(())
+}
+
+async fn language_stats() -> impl Responder {
+    "HI"
+}
+
+trait async_trait_test {
+    async fn test();
 }

@@ -1,0 +1,18 @@
+# cassandra only
+
+services:
+  db:
+    container_name: db
+    image: cassandra:4.1.4
+    restart: always
+    environment:
+      - CASSANDRA_USER=admin
+      - CASSANDRA_PASSWORD=admin
+      - CASSANDRA_CLUSTER_NAME=db
+    ports:
+      - 9042:9042
+    volumes:
+      - cassandra_db:/var/lib/cassandra
+      
+volumes:
+  cassandra_db: 
