@@ -4,9 +4,7 @@ CREATE KEYSPACE IF NOT EXISTS misc
 
 CREATE TABLE IF NOT EXISTS misc.messages (
      author varchar,
-     day int,
-     ts timestamp,
-     temperature float,
-     humidity float,
-     PRIMARY KEY ((sensor_id, day), ts)
+     msg varchar,
+     time_posted timestamp,
+     PRIMARY KEY (time_posted)
 );
