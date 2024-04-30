@@ -1,112 +1,113 @@
+"use client"
 import Image from "next/image";
+import TypingText from "@/components/typing_text";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { LangChart } from "@/components/stats/lang_chart";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+import useSWR from 'swr'
+import FamiliarTechCard from "@/components/familiar_technologies";
+const fetcher = (args: string | URL | Request) => fetch(args).then((res) => res.json())
+
+function GetLangStats(): { name: string, total: number }[] {
+  var { data, error } = useSWR('../test_jsons/langs.json', fetcher)
+ 
+  if (error) return []
+  if (!data) return []
+
+  data = Object.entries(data).map(([name, total]) => ({
+      name,
+      total
+  }));
+
+  data = data.sort((a: { name: string, total: number }, b: { name: string, total: number }) => b.total - a.total);
+  return data
+}
 
 export default function Home() {
+  var lang_stats = GetLangStats();
+  var top_10 = lang_stats.slice(0, 10);
+  var rest = lang_stats.slice(10);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <div className="flex min-h-screen flex-col items-center justify-between p-24 gap-10">
+        <h1 className="font-extrabold text-8xl">Hi, I&apos;m Hewitt.</h1>
+        <h1 className="font-extrabold text-4xl">I like making things that work.</h1>
+        <div className="flex w-full gap-4">
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle>Some things about me...</CardTitle>
+            </CardHeader>
+            <CardContent className="">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Who am I?</AccordionTrigger>
+                <AccordionContent>
+                  Hi! I&apos;m a 17yo student graduating from <a href="https://www.bxscience.edu/" target="_blank" className="underline">The Bronx High School of Science</a>. I&apos;m also a programmer hacking his way around. I&apos;ve been programming for ~2 years, and have taken the time to carefully learn each  . I try my best to pull my weight and take initiative while working with others :)
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>What are my hobbies?</AccordionTrigger>
+                <AccordionContent>  
+                  I like playing music in my free time (mainly piano and violin). I&apos;m a classical musician of 12 years and am obsessed with Chopin and Liszt, but I try to be versatile as well. I also enjoy running, swimming, and gaming in my free time.
+                  <br></br>
+                  <br></br>
+                  <p className="font-semibold ">Currently interested in:</p>
+                  <ul>
+                    <li>&#8226; Graphics programming</li>
+                    <li>&#8226; Embedded/systems programming</li>
+                    <li>&#8226; Stock market trading</li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger>Something....</AccordionTrigger>
+                <AccordionContent>
+                  What do I add here..
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+            </CardContent>
+          </Card>
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle>10 most frequently used languages</CardTitle>
+            </CardHeader>
+            <CardContent className="">
+              <LangChart data={top_10} />
+              <CardDescription className="underline cursor-pointer">
+                <a href="https://github.com/niooii/portfolio-api/blob/main/backend/src/github_stats.rs" target="_blank">Statistics updated in real-time.</a>
+              </CardDescription>
+            </CardContent>
+          </Card>
+          {/* <Card className="w-full">
+            <CardHeader>
+              <CardTitle>Have working knowledge of:</CardTitle>
+            </CardHeader>
+            <CardContent className="">
+            {
+              rest.map(({ name, total }: { name: string; total: number }) => {
+                return <h1 key={name} className="text-l grey">&#8226; {name}</h1>
+              })
+            }
+            </CardContent>
+          </Card> */}
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      
+      <FamiliarTechCard></FamiliarTechCard>
       </div>
     </main>
   );
