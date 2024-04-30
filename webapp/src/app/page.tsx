@@ -84,7 +84,7 @@ export default function Home() {
           </Card>
           <Card className="w-full">
             <CardHeader>
-              <CardTitle>10 most frequently used languages</CardTitle>
+              <CardTitle>My 10 most used languages</CardTitle>
             </CardHeader>
             <CardContent className="">
               <LangChart data={top_10} />
