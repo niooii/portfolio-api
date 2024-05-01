@@ -1,17 +1,19 @@
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "./ui/card";
 import Image from 'next/image'
-
+import Aos from "aos";
+// animista
 interface TechCardProps {
   name: string;
   description: string;
   url: string;
   img_url: string;
+  idx: number;
 }
 
-export default function TechCard({ name, description, url, img_url }: TechCardProps) {
+export default function TechCard({ name, description, url, img_url, idx }: TechCardProps) {
   return (
    <a href={url} target="_blank">
-        <Card className="w-full cursor-pointer flex">
+        <Card className="w-full cursor-pointer flex" data-aos="fade-in" data-aos-delay={idx * 100}>
             <div className="flex items-center">
                 <div style={{ padding: '12px' }}>
                 <Image src={img_url} width={100} height={100} alt="" />
