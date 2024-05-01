@@ -60,7 +60,7 @@ export default function Home() {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
-                <AccordionTrigger>What are my hobbies?</AccordionTrigger>
+                <AccordionTrigger>My hobbies?</AccordionTrigger>
                 <AccordionContent>  
                   I like playing music in my free time (mainly piano and violin). I&apos;m a classical musician of 12 years and am obsessed with Chopin and Liszt, but I try to be versatile as well. I also enjoy running, swimming, and gaming in my free time.
                   <br></br>
