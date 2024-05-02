@@ -13,7 +13,7 @@ interface TechCardProps {
 export default function TechCard({ name, description, url, img_url, idx }: TechCardProps) {
   return (
    <a href={url} target="_blank">
-        <Card className="w-full cursor-pointer flex" data-aos="fade-in" data-aos-delay={idx * 100}>
+        <Card className="w-full cursor-pointer flex" data-aos="fade-in" data-aos-delay={idx * 100 }>
             <div className="flex items-center">
                 <div style={{ padding: '12px' }}>
                 <Image src={img_url} width={100} height={100} alt="" />

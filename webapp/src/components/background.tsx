@@ -37,6 +37,6 @@ export default function Background({ children }) {
     }, [vantaEffect]);
 
     return (
-        <div ref={vantaRef}>{children}</div>
+        <div ref={vantaRef} className="">{children}</div>
     )
 }

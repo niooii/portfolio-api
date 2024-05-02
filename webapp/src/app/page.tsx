@@ -64,8 +64,8 @@ export default function Home() {
     <main>
       <Background children={
         <div className="flex min-h-screen flex-col items-center justify-between p-24 gap-10">
-        <h1 className="font-extrabold text-8xl" data-aos="fade-in" data-aos-delay={0}>Hi, I&apos;m Hewitt.</h1>
-        <h1 className="font-extrabold text-4xl py-5">yap yap yap</h1>
+        <h1 className="font-extrabold text-8xl animate-fade">Hi, I&apos;m Hewitt.</h1>
+        <h1 className="font-extrabold text-4xl py-5 animate-[appear_150ms_cubic-bezier(0.4,_0,_0.2,_1)_1500ms_forwards]">yap yap yap</h1>
         <div className="relative flex w-full gap-4 text-2xl">
           <Card className="w-full opacity-100" data-aos="fade-in" data-aos-delay={100}>
             <CardHeader>
@@ -79,7 +79,7 @@ export default function Home() {
               I like playing music in my free time (mainly piano and violin). I&apos;m a classical musician of 12 years and mostly play pieces by Chopin and Liszt, but I try to be versatile as well. I also enjoy running, swimming, and gaming in my free time.
               <br></br>
               <br></br>
-              <p className="font-semibold ">Currently interested in:</p>
+              <text className="font-semibold ">Currently interested in:</text>
               <ul>
                 <li>&#8226; Graphics programming</li>
                 <li>&#8226; Embedded/systems programming</li>
