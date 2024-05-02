@@ -24,7 +24,7 @@ export default function Background({ children }) {
                     scale: 1.00,
                     scaleMobile: 1.00,
                     color: 0x0,
-                    shininess: 8.00,
+                    shininess: 14.00,
                     waveHeight: 8.50,
                     waveSpeed: 0.55,
                     zoom: 1.00

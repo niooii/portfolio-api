@@ -72,34 +72,20 @@ export default function Home() {
               <CardTitle className="text-4xl">About me...</CardTitle>
             </CardHeader>
             <CardContent className="">
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Who am I?</AccordionTrigger>
-                <AccordionContent className="text-xl">
-                  I&apos;m a 17yo student graduating from <a href="https://www.bxscience.edu/" target="_blank" className="underline">The Bronx High School of Science</a>. I&apos;m also a relatively new programmer of ~2 years, aiming to become a well-rounded developer. I don&apos;t talk very much, but am not at all afraid to share my ideas.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>My hobbies?</AccordionTrigger>
-                <AccordionContent className="text-xl">  
-                  I like playing music in my free time (mainly piano and violin). I&apos;m a classical musician of 12 years and mostly play pieces by Chopin and Liszt, but I try to be versatile as well. I also enjoy running, swimming, and gaming in my free time.
-                  <br></br>
-                  <br></br>
-                  <p className="font-semibold ">Currently interested in:</p>
-                  <ul>
-                    <li>&#8226; Graphics programming</li>
-                    <li>&#8226; Embedded/systems programming</li>
-                    <li>&#8226; Stock market trading</li>
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Something....</AccordionTrigger>
-                <AccordionContent>
-                  What do I add here..
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <p className="text-xl">
+              I&apos;m a 17yo student graduating from <a href="https://www.bxscience.edu/" target="_blank" className="underline">The Bronx High School of Science</a>. I&apos;m also a relatively new programmer of ~2 years, aiming to become a well-rounded developer. I don&apos;t talk very much, but am not at all afraid to share my ideas.
+              <br></br>
+              <br></br>
+              I like playing music in my free time (mainly piano and violin). I&apos;m a classical musician of 12 years and mostly play pieces by Chopin and Liszt, but I try to be versatile as well. I also enjoy running, swimming, and gaming in my free time.
+              <br></br>
+              <br></br>
+              <p className="font-semibold ">Currently interested in:</p>
+              <ul>
+                <li>&#8226; Graphics programming</li>
+                <li>&#8226; Embedded/systems programming</li>
+                <li>&#8226; Stock market trading</li>
+              </ul>
+            </p>
             </CardContent>
           </Card>
           <Card className="w-full">
