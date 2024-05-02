@@ -7,7 +7,7 @@ export default function FamiliarTechCard() {
   return (
     <Card className="w-full">
       <CardHeader className="">
-        <CardTitle className="font-extrabold text-2xl text-center">Here&apos;s some technologies I&apos;ve used before.</CardTitle>
+        <CardTitle className="font-extrabold text-2xl text-center">Here&apos;re some technologies I&apos;ve used before.</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col justify-between gap-4">
         <TechSectionLabel text="Build Tools"/>
@@ -40,7 +40,7 @@ export default function FamiliarTechCard() {
           <TechCard name="Powershell" description="But I forgot most of it" url="https://learn.microsoft.com/en-us/training/modules/script-with-powershell/" img_url="/apoweredshell.png" idx={1} />
           <TechCard name="AHK" description="Automating GUI tasks" url="https://www.autohotkey.com/" img_url="/ahk.png" idx={2} />
         </div>
-        <TechSectionLabel text="Misc/Other"/>
+        <TechSectionLabel text="Misc/Langs"/>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4" style={{ width: "100%" }}>
           <TechCard name="Docker" description="Container-izing this website" url="https://www.docker.com/" img_url="/docker.webp" idx={0} />
           <TechCard name="Lua" description="Roblox Studio" url="https://www.lua.org/" img_url="/lua.png" idx={1} />

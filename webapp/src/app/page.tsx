@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 "use client"
 import Image from "next/image";
 import TypingText from "@/components/typing_text";
@@ -20,6 +21,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import useSWR from 'swr'
 import FamiliarTechCard from "@/components/familiar_technologies";
+import { useEffect } from "react";
+import Background from "@/components/background";
+import { EmailForm } from "@/components/email_form";
+import SocialMedia from "@/components/social_media";
 const fetcher = (args: string | URL | Request) => fetch(args).then((res) => res.json())
 
 function GetLangStats(): { name: string, total: number }[] {
@@ -38,31 +43,46 @@ function GetLangStats(): { name: string, total: number }[] {
 }
 
 export default function Home() {
+  useEffect(() => {
+    const threeScript = document.createElement("script");
+    threeScript.setAttribute("id", "threeScript");
+    threeScript.setAttribute(
+      "src",
+      "https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"
+    );
+    document.getElementsByTagName("head")[0].appendChild(threeScript);
+    return () => {
+      if (threeScript) {
+        threeScript.remove();
+      }
+    };
+  }, []);
   var lang_stats = GetLangStats();
   var top_10 = lang_stats.slice(0, 10);
   var rest = lang_stats.slice(10);
   return (
     <main>
-      <div className="flex min-h-screen flex-col items-center justify-between p-24 gap-10">
-        <h1 className="font-extrabold text-8xl" data-aos="fade-up">Hi, I&apos;m Hewitt.</h1>
-        <h1 className="font-extrabold text-4xl">yap yap yap</h1>
-        <div className="flex w-full gap-4">
-          <Card className="w-full">
+      <Background children={
+        <div className="flex min-h-screen flex-col items-center justify-between p-24 gap-10">
+        <h1 className="font-extrabold text-8xl" data-aos="fade-in" data-aos-delay={0}>Hi, I&apos;m Hewitt.</h1>
+        <h1 className="font-extrabold text-4xl py-5">yap yap yap</h1>
+        <div className="relative flex w-full gap-4 text-2xl">
+          <Card className="w-full opacity-100" data-aos="fade-in" data-aos-delay={100}>
             <CardHeader>
-              <CardTitle>Some things about me...</CardTitle>
+              <CardTitle className="text-4xl">About me...</CardTitle>
             </CardHeader>
             <CardContent className="">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
                 <AccordionTrigger>Who am I?</AccordionTrigger>
-                <AccordionContent>
-                  Hi! I&apos;m a 17yo student graduating from <a href="https://www.bxscience.edu/" target="_blank" className="underline">The Bronx High School of Science</a>. I&apos;m also a programmer hacking his way around, aiming to become a well-rounded developer. I&apos;ve been programming for ~2 years. I try my best to pull my weight and take initiative while working with others :)
+                <AccordionContent className="text-xl">
+                  I&apos;m a 17yo student graduating from <a href="https://www.bxscience.edu/" target="_blank" className="underline">The Bronx High School of Science</a>. I&apos;m also a relatively new programmer of ~2 years, aiming to become a well-rounded developer. I don&apos;t talk very much, but am not at all afraid to share my ideas.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger>My hobbies?</AccordionTrigger>
-                <AccordionContent>  
-                  I like playing music in my free time (mainly piano and violin). I&apos;m a classical musician of 12 years and am obsessed with Chopin and Liszt, but I try to be versatile as well. I also enjoy running, swimming, and gaming in my free time.
+                <AccordionContent className="text-xl">  
+                  I like playing music in my free time (mainly piano and violin). I&apos;m a classical musician of 12 years and mostly play pieces by Chopin and Liszt, but I try to be versatile as well. I also enjoy running, swimming, and gaming in my free time.
                   <br></br>
                   <br></br>
                   <p className="font-semibold ">Currently interested in:</p>
@@ -84,13 +104,35 @@ export default function Home() {
           </Card>
           <Card className="w-full">
             <CardHeader>
-              <CardTitle>My 10 most used languages</CardTitle>
+              <CardTitle className="text-4xl">My 10 most used languages</CardTitle>
             </CardHeader>
             <CardContent className="">
               <LangChart data={top_10} />
               <CardDescription className="underline cursor-pointer">
                 <a href="https://github.com/niooii/portfolio-api/blob/main/backend/src/github_stats.rs" target="_blank">Statistics updated in real-time.</a>
               </CardDescription>
+            </CardContent>
+          </Card>
+        </div>
+        <FamiliarTechCard></FamiliarTechCard>
+        <div className="relative flex w-full gap-4 text-2xl">
+          <Card className="w-full" data-aos="fade-in" data-aos-delay={100}>
+            <CardHeader>
+              <CardTitle className="text-4xl">Check out some stuff I made!</CardTitle>
+            </CardHeader>
+            <CardContent className="">
+              <h1>Some video embed goes here</h1>
+            </CardContent>
+          </Card>
+          <Card className="w-full opacity-100" data-aos="fade-in" data-aos-delay={200}>
+            <CardHeader>
+              <CardTitle className="text-4xl">Contact me</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col justify-between gap-5">
+              <h1 className="text-2xl font-semibold">Shoot me an email!</h1>
+              <EmailForm></EmailForm>
+              <h1 className="text-2xl font-semibold pt-8">Or find me on:</h1>
+              <SocialMedia logo_url="" handle="oinonionoin" url="https://www.instagram.com/oinonionoin/" />
             </CardContent>
           </Card>
           {/* <Card className="w-full">
@@ -107,8 +149,10 @@ export default function Home() {
           </Card> */}
         </div>
       
-      <FamiliarTechCard></FamiliarTechCard>
       </div>
+      }>
+      </Background>
+      
     </main>
   );
 }

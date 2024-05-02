@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme_provider";
 import { AOSInit } from "./aos";
 import Background from "@/components/background";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,8 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="dark"
           disableTransitionOnChange>
-          <Background width={400} height={400} children={children}/>
+          {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
