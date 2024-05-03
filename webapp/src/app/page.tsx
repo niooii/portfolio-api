@@ -64,15 +64,15 @@ export default function Home() {
     <main>
       <Background children={
         <div className="flex min-h-screen flex-col items-center justify-between p-24 gap-10">
-        <h1 className="font-extrabold text-8xl animate-fade">Hi, I&apos;m Hewitt.</h1>
-        <h1 className="font-extrabold text-4xl py-5 animate-[appear_150ms_cubic-bezier(0.4,_0,_0.2,_1)_1500ms_forwards]">yap yap yap</h1>
+        <h1 className="font-extrabold text-8xl" data-aos="fade-in" data-aos-delay={0}>Hi, I&apos;m Hewitt.</h1>
+        <h1 className="font-extrabold text-4xl py-5">yap yap yap</h1>
         <div className="relative flex w-full gap-4 text-2xl">
           <Card className="w-full opacity-100" data-aos="fade-in" data-aos-delay={100}>
             <CardHeader>
               <CardTitle className="text-4xl">About me...</CardTitle>
             </CardHeader>
             <CardContent className="">
-            <p className="text-xl">
+            <p className="text-xl ">
               I&apos;m a 17yo student graduating from <a href="https://www.bxscience.edu/" target="_blank" className="underline">The Bronx High School of Science</a>. I&apos;m also a relatively new programmer of ~2 years, aiming to become a well-rounded developer. I don&apos;t talk very much, but am not at all afraid to share my ideas.
               <br></br>
               <br></br>
@@ -107,7 +107,7 @@ export default function Home() {
               <CardTitle className="text-4xl">Check out some stuff I made!</CardTitle>
             </CardHeader>
             <CardContent className="">
-              <h1>Some video embed goes here</h1>
+              <source src="/videos/projects.mkv"></source>
             </CardContent>
           </Card>
           <Card className="w-full opacity-100" data-aos="fade-in" data-aos-delay={200}>
